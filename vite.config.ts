@@ -16,6 +16,20 @@ export default defineConfig({
 			]
 		})
 	],
+	resolve: {
+		alias: {
+			'y-protocols/awareness': 'y-protocols/dist/awareness.cjs',
+			'y-protocols/sync': 'y-protocols/dist/sync.cjs'
+		}
+	},
+	optimizeDeps: {
+		include: ['yjs'],
+		exclude: ['@huggingface/transformers', 'y-protocols', 'y-prosemirror']
+	},
+	ssr: {
+		noExternal: ['y-protocols', 'yjs', 'y-prosemirror'],
+		external: ['@huggingface/transformers', 'pyodide']
+	},
 	define: {
 		APP_VERSION: JSON.stringify(process.env.npm_package_version),
 		APP_BUILD_HASH: JSON.stringify(process.env.APP_BUILD_HASH || 'dev-build')
