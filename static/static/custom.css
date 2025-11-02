@@ -24,7 +24,7 @@ html.dark .text-gray-400 {
   color: var(--eveo-primary) !important;
 }
 
-/* HUD Animation for Chat Input Box - Google AI Mode Style */
+/* HUD Animation for Chat Input Box */
 @property --gradient-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -144,4 +144,319 @@ img[src*="favicon-icon.svg"],
 img[src*="favicon.svg"] {
   display: block;
   object-fit: contain;
+}
+
+/* ===================================
+   GLASS MORPHISM EFFECTS
+   Tooltips & Toast Notifications
+   =================================== */
+
+/* Glass Effect Tooltips (Tippy.js) */
+.tippy-box {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  font-size: 0.875rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Gradient overlay for tooltips */
+.tippy-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tippy-content {
+  position: relative;
+  z-index: 1;
+  color: #333 !important;
+}
+
+/* Dark mode tooltips */
+html.dark .tippy-box {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .tippy-box::before {
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%);
+}
+
+html.dark .tippy-content {
+  color: #ffffff !important;
+}
+
+/* Arrow styles for glass tooltips */
+.tippy-arrow {
+  color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.dark .tippy-arrow {
+  color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Smooth fade-in animation */
+.tippy-box[data-animation='fade'][data-state='hidden'] {
+  opacity: 0;
+}
+
+.tippy-box[data-animation='fade'][data-state='visible'] {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+/* ===================================
+   GLASS EFFECT TOAST NOTIFICATIONS
+   =================================== */
+
+/* Override sonner toast styles with glass effect - Multiple selectors */
+[data-sonner-toast],
+[data-sonner-toaster] [data-styled='true'],
+.sonner-toast,
+div[role="status"][data-sonner-toast] {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 24px !important;
+}
+
+[data-sonner-toast]::before,
+.sonner-toast::before,
+div[role="status"][data-sonner-toast]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 100%) !important;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark mode toasts */
+html.dark [data-sonner-toast],
+html.dark .sonner-toast,
+html.dark div[role="status"][data-sonner-toast] {
+  background: rgba(0, 0, 0, 0.40) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark [data-sonner-toast]::before,
+html.dark .sonner-toast::before,
+html.dark div[role="status"][data-sonner-toast]::before {
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.05) 100%) !important;
+}
+
+/* Toast hover effect */
+[data-sonner-toast]:hover,
+.sonner-toast:hover,
+div[role="status"]:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html.dark [data-sonner-toast]:hover,
+html.dark .sonner-toast:hover,
+html.dark div[role="status"]:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Ensure toast content is above overlay */
+[data-sonner-toast]>*,
+.sonner-toast>*,
+div[role="status"]>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Success toast glass effect */
+[data-sonner-toast][data-type='success'],
+.sonner-toast[data-type='success'] {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+html.dark [data-sonner-toast][data-type='success'],
+html.dark .sonner-toast[data-type='success'] {
+  background: rgba(16, 185, 129, 0.3) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Error toast glass effect */
+[data-sonner-toast][data-type='error'],
+.sonner-toast[data-type='error'] {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+html.dark [data-sonner-toast][data-type='error'],
+html.dark .sonner-toast[data-type='error'] {
+  background: rgba(239, 68, 68, 0.3) !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Warning toast glass effect */
+[data-sonner-toast][data-type='warning'],
+.sonner-toast[data-type='warning'] {
+  background: rgba(245, 158, 11, 0.2) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+html.dark [data-sonner-toast][data-type='warning'],
+html.dark .sonner-toast[data-type='warning'] {
+  background: rgba(245, 158, 11, 0.3) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+/* Info toast glass effect */
+[data-sonner-toast][data-type='info'],
+.sonner-toast[data-type='info'] {
+  background: rgba(59, 130, 246, 0.2) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+html.dark [data-sonner-toast][data-type='info'],
+html.dark .sonner-toast[data-type='info'] {
+  background: rgba(59, 130, 246, 0.3) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+/* Override any default backgrounds from Sonner */
+[data-sonner-toaster] [data-styled='true'][data-mounted='true'] {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+}
+
+html.dark [data-sonner-toaster] [data-styled='true'][data-mounted='true'] {
+  background: rgba(0, 0, 0, 0.40) !important;
+}
+
+/* Custom notification toast glass effect */
+.toast-glass-notification {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast-glass-notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.toast-glass-notification:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.toast-glass-notification>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode custom notification */
+html.dark .toast-glass-notification {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .toast-glass-notification::before {
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.04) 100%);
+}
+
+html.dark .toast-glass-notification:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Update Info Toast glass effect */
+.update-toast-glass {
+  background: rgba(59, 130, 246, 0.15) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(59, 130, 246, 0.35) !important;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.update-toast-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+      rgba(59, 130, 246, 0.15) 0%,
+      rgba(59, 130, 246, 0.08) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.update-toast-glass>* {
+  position: relative;
+  z-index: 1;
+}
+
+html.dark .update-toast-glass {
+  background: rgba(59, 130, 246, 0.25) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .update-toast-glass::before {
+  background: linear-gradient(135deg,
+      rgba(59, 130, 246, 0.2) 0%,
+      rgba(59, 130, 246, 0.1) 100%);
 }
