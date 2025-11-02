@@ -10,6 +10,37 @@ echo "║                                                          ║"
 echo "╚══════════════════════════════════════════════════════════╝"
 echo ""
 
+# Função de limpeza - mata processos anteriores
+cleanup_previous_session() {
+    echo "🧹 Limpando processos anteriores..."
+    
+    # Matar sessão tmux se existir
+    if tmux has-session -t eveo-ai 2>/dev/null; then
+        echo "  → Matando sessão tmux 'eveo-ai'..."
+        tmux kill-session -t eveo-ai
+    fi
+    
+    # Liberar porta 8080 (Backend)
+    if lsof -ti:8080 >/dev/null 2>&1; then
+        echo "  → Liberando porta 8080 (Backend)..."
+        lsof -ti:8080 | xargs kill -9 2>/dev/null
+        sleep 1
+    fi
+    
+    # Liberar porta 5173 (Frontend)
+    if lsof -ti:5173 >/dev/null 2>&1; then
+        echo "  → Liberando porta 5173 (Frontend)..."
+        lsof -ti:5173 | xargs kill -9 2>/dev/null
+        sleep 1
+    fi
+    
+    echo "✅ Limpeza concluída!"
+    echo ""
+}
+
+# Executar limpeza antes de iniciar
+cleanup_previous_session
+
 # Verificar se está no diretório correto
 if [ ! -f "package.json" ]; then
     echo "❌ Execute este script do diretório raiz do projeto!"

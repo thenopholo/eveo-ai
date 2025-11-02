@@ -1,0 +1,132 @@
+/* EVEO Custom Styles */
+
+/* Import Hanken Grotesk from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Icon color customization for light and dark themes */
+:root {
+  --eveo-primary: #ff0000;
+  --eveo-secondary: #e2001b;
+  --font-hanken: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+/* Override icon colors in light mode */
+html:not(.dark) .text-gray-600,
+html:not(.dark) .text-gray-500,
+html:not(.dark) .text-gray-400 {
+  color: var(--eveo-primary) !important;
+}
+
+/* Override icon colors in dark mode */
+html.dark .text-gray-600,
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: var(--eveo-primary) !important;
+}
+
+/* HUD Animation for Chat Input Box - Google AI Mode Style */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.hud-border-animation {
+  position: relative;
+  border: 2px solid transparent;
+  --gradient-angle: 0deg;
+}
+
+.hud-border-animation::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--gradient-angle),
+      transparent 0%,
+      transparent 5%,
+      var(--eveo-primary) 15%,
+      var(--eveo-secondary) 25%,
+      transparent 35%,
+      transparent 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+  animation: rotating-gradient 4s linear infinite;
+}
+
+/* Sutil glow effect on focus */
+.hud-border-animation:focus-within::before {
+  box-shadow:
+    0 0 15px rgba(255, 0, 0, 0.15),
+    0 0 25px rgba(226, 0, 27, 0.1);
+}
+
+/* Rotating gradient animation */
+@keyframes rotating-gradient {
+  0% {
+    --gradient-angle: 0deg;
+  }
+
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+/* Specific styling for MessageInput in placeholder */
+.message-input-hud {
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* SVG Icon colors override */
+svg path,
+svg circle,
+svg line,
+svg polyline,
+svg polygon,
+svg rect {
+  stroke: var(--eveo-primary);
+}
+
+/* Specific overrides for filled icons */
+.fill-gray-600,
+.fill-gray-500,
+.fill-gray-400 {
+  fill: var(--eveo-primary) !important;
+}
+
+/* Button icon colors */
+button svg {
+  color: var(--eveo-primary);
+}
+
+/* Dark mode specific adjustments */
+html.dark svg path,
+html.dark svg circle,
+html.dark svg line,
+html.dark svg polyline,
+html.dark svg polygon,
+html.dark svg rect {
+  stroke: var(--eveo-primary);
+}
+
+/* Apply Hanken Grotesk globally */
+* {
+  font-family: var(--font-hanken) !important;
+}
+
+body,
+html {
+  font-family: var(--font-hanken) !important;
+}
+
+/* Override font-primary class */
+.font-primary {
+  font-family: var(--font-hanken) !important;
+}

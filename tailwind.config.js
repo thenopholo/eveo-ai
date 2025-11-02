@@ -7,6 +7,10 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['Hanken Grotesk', 'system-ui', '-apple-system', 'sans-serif'],
+				primary: ['Hanken Grotesk', 'system-ui', '-apple-system', 'sans-serif']
+			},
 			colors: {
 				gray: {
 					50: 'var(--color-gray-50, #f9f9f9)',
@@ -21,6 +25,10 @@ export default {
 					850: 'var(--color-gray-850, #262626)',
 					900: 'var(--color-gray-900, #171717)',
 					950: 'var(--color-gray-950, #0d0d0d)'
+				},
+				eveo: {
+					primary: '#ff0000',
+					secondary: '#e2001b'
 				}
 			},
 			typography: {
@@ -39,6 +47,26 @@ export default {
 			},
 			transitionProperty: {
 				width: 'width'
+			},
+			keyframes: {
+				'hud-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px #ff0000, 0 0 40px #ff0000, inset 0 0 20px rgba(255, 0, 0, 0.1)',
+						borderColor: '#ff0000'
+					},
+					'50%': {
+						boxShadow: '0 0 30px #e2001b, 0 0 60px #e2001b, inset 0 0 30px rgba(226, 0, 27, 0.2)',
+						borderColor: '#e2001b'
+					}
+				},
+				'border-flow': {
+					'0%': { strokeDashoffset: '0' },
+					'100%': { strokeDashoffset: '1000' }
+				}
+			},
+			animation: {
+				'hud-glow': 'hud-glow 3s ease-in-out infinite',
+				'border-flow': 'border-flow 20s linear infinite'
 			}
 		}
 	},
