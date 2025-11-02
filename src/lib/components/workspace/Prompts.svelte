@@ -67,7 +67,7 @@
 	};
 
 	const shareHandler = async (prompt) => {
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
+		toast.success($i18n.t('Redirecting you to Evelean Community'));
 
 		const url = 'https://openwebui.com';
 

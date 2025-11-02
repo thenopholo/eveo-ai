@@ -290,11 +290,11 @@
 						});
 					}
 
-					if ($isLastActiveTab) {
-						if ($settings?.notificationEnabled ?? false) {
-							new Notification(`${title} • Open WebUI`, {
-								body: content,
-								icon: `${WEBUI_BASE_URL}/static/favicon.png`
+				if ($isLastActiveTab) {
+					if ($settings?.notificationEnabled ?? false) {
+						new Notification(`${title} • Evelean`, {
+							body: content,
+							icon: `${WEBUI_BASE_URL}/static/favicon.png`
 							});
 						}
 					}
@@ -439,11 +439,11 @@
 			const data = event?.data?.data ?? null;
 
 			if (type === 'message') {
-				if ($isLastActiveTab) {
-					if ($settings?.notificationEnabled ?? false) {
-						new Notification(`${data?.user?.name} (#${event?.channel?.name}) • Open WebUI`, {
-							body: data?.content,
-							icon: data?.user?.profile_image_url ?? `${WEBUI_BASE_URL}/static/favicon.png`
+			if ($isLastActiveTab) {
+				if ($settings?.notificationEnabled ?? false) {
+					new Notification(`${data?.user?.name} (#${event?.channel?.name}) • Evelean`, {
+						body: data?.content,
+						icon: data?.user?.profile_image_url ?? `${WEBUI_BASE_URL}/static/favicon.png`
 						});
 					}
 				}
