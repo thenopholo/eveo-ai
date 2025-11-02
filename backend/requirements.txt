@@ -46,6 +46,8 @@ google-generativeai==0.8.5
 
 langchain==0.3.27
 langchain-community==0.3.29
+langgraph==0.2.70
+langchain-groq==0.3.3
 
 fake-useragent==2.2.0
 chromadb==1.1.0
@@ -55,7 +57,7 @@ transformers
 sentence-transformers==5.1.1
 accelerate
 pyarrow==20.0.0 # fix: pin pyarrow version to 20 for rpi compatibility #15897
-einops==0.8.1 
+einops==0.8.1
 
 ftfy==6.2.3
 pypdf==6.0.0
