@@ -128,7 +128,8 @@
 			</div>
 		</div>
 
-		<div class=" w-full font-primary" in:fade={{ duration: 200, delay: 300 }}>
+		<!-- Suggestions removed for Evelean -->
+		<!-- <div class=" w-full font-primary" in:fade={{ duration: 200, delay: 300 }}>
 			<Suggestions
 				className="grid grid-cols-2"
 				suggestionPrompts={atSelectedModel?.info?.meta?.suggestion_prompts ??
@@ -137,6 +138,6 @@
 					[]}
 				{onSelect}
 			/>
-		</div>
+		</div> -->
 	</div>
 {/key}

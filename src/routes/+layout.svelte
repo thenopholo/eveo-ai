@@ -669,7 +669,8 @@
 
 			await loadingProgress.set(100);
 
-			document.getElementById('splash-screen')?.remove();
+			// Let the loader.js handle splash screen removal
+			// document.getElementById('splash-screen')?.remove();
 
 			const audio = new Audio(`/audio/greeting.mp3`);
 			const playAudio = () => {
@@ -681,7 +682,8 @@
 
 			loaded = true;
 		} else {
-			document.getElementById('splash-screen')?.remove();
+			// Let the loader.js handle splash screen removal with animation
+			// document.getElementById('splash-screen')?.remove();
 			loaded = true;
 		}
 

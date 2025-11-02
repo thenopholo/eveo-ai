@@ -94,24 +94,79 @@
 						}
 					}
 				});
-				const isDarkMode = document.documentElement.classList.contains('dark');
-
-				const logo = document.createElement('img');
-				logo.id = 'logo';
-				logo.style =
-					'position: absolute; width: auto; height: 6rem; top: 44%; left: 50%; transform: translateX(-50%); display:block;';
-				logo.src = isDarkMode ? '/static/splash-dark.png' : '/static/splash.png';
-
-				document.addEventListener('DOMContentLoaded', function () {
-					const splash = document.getElementById('splash-screen');
-					if (document.documentElement.classList.contains('her')) {
-						return;
-					}
-
-					if (splash) splash.prepend(logo);
-				});
 			})();
 		</script>
+
+		<style>
+			.eveo-loader-container {
+				position: relative;
+				width: 120px;
+				height: 120px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.eveo-logo-part {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				opacity: 0;
+				transform: scale(0.8);
+			}
+
+			.eveo-logo-bottom {
+				animation: showLogoPart 6s infinite;
+				animation-delay: 2.4s;
+			}
+
+			.eveo-logo-mid {
+				animation: showLogoPart 6s infinite;
+				animation-delay: 1.6s;
+			}
+
+			.eveo-logo-top {
+				animation: showLogoPart 6s infinite;
+				animation-delay: 0.8s;
+			}
+
+			@keyframes showLogoPart {
+				0% {
+					opacity: 0;
+					transform: scale(0.8) translateY(15px);
+				}
+				10% {
+					opacity: 1;
+					transform: scale(1) translateY(0px);
+				}
+				70% {
+					opacity: 1;
+					transform: scale(1) translateY(0px);
+				}
+				80% {
+					opacity: 0;
+					transform: scale(0.8) translateY(15px);
+				}
+				100% {
+					opacity: 0;
+					transform: scale(0.8) translateY(15px);
+				}
+			}
+
+			#splash-screen.fade-out {
+				animation: fadeOut 0.5s ease-out forwards;
+			}
+
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+					visibility: hidden;
+				}
+			}
+		</style>
 
 		<title>Evelean</title>
 
@@ -123,7 +178,7 @@
 
 		<div
 			id="splash-screen"
-			style="position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%"
+			style="position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"
 		>
 			<style type="text/css" nonce="">
 				html {
@@ -131,57 +186,23 @@
 				}
 			</style>
 
-			<div
-				style="
-					position: absolute;
-					top: 33%;
-					left: 50%;
-
-					width: 24rem;
-					transform: translateX(-50%);
-
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-				"
-			>
+			<div class="eveo-loader-container">
 				<img
-					id="logo-her"
-					style="width: auto; height: 13rem"
-					src="/static/splash.png"
-					class="animate-pulse-fast"
+					src="/static/logo_symbol_eveo-bottom.svg"
+					class="eveo-logo-part eveo-logo-bottom"
+					alt="Evelean Bottom"
 				/>
-
-				<div style="position: relative; width: 24rem; margin-top: 0.5rem">
-					<div
-						id="progress-background"
-						style="
-							position: absolute;
-							width: 100%;
-							height: 0.75rem;
-
-							border-radius: 9999px;
-							background-color: #fafafa9a;
-						"
-					></div>
-
-					<div
-						id="progress-bar"
-						style="
-							position: absolute;
-							width: 0%;
-							height: 0.75rem;
-							border-radius: 9999px;
-							background-color: #fff;
-						"
-						class="bg-white"
-					></div>
-				</div>
+				<img
+					src="/static/logo_symbol_eveo-mid.svg"
+					class="eveo-logo-part eveo-logo-mid"
+					alt="Evelean Mid"
+				/>
+				<img
+					src="/static/logo_symbol_eveo-top.svg"
+					class="eveo-logo-part eveo-logo-top"
+					alt="Evelean Top"
+				/>
 			</div>
-
-			<!-- <span style="position: absolute; bottom: 32px; left: 50%; margin: -36px 0 0 -36px">
-				Footer content
-			</span> -->
 		</div>
 	</body>
 </html>
@@ -193,63 +214,10 @@
 	}
 
 	#splash-screen {
-		background: #fff;
+		background: rgba(255, 255, 255, 0.95);
 	}
 
 	html.dark #splash-screen {
-		background: #000;
-	}
-
-	html.her #splash-screen {
-		background: #983724;
-	}
-
-	#logo-her {
-		display: none;
-	}
-
-	#progress-background {
-		display: none;
-	}
-
-	#progress-bar {
-		display: none;
-	}
-
-	html.her #logo {
-		display: none;
-	}
-
-	html.her #logo-her {
-		display: block;
-		filter: invert(1);
-	}
-
-	html.her #progress-background {
-		display: block;
-	}
-
-	html.her #progress-bar {
-		display: block;
-	}
-
-	@media (max-width: 24rem) {
-		html.her #progress-background {
-			display: none;
-		}
-
-		html.her #progress-bar {
-			display: none;
-		}
-	}
-
-	@keyframes pulse {
-		50% {
-			opacity: 0.65;
-		}
-	}
-
-	.animate-pulse-fast {
-		animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+		background: rgba(0, 0, 0, 0.95);
 	}
 </style>
