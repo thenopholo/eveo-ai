@@ -106,6 +106,22 @@
 				</div>
 				<div class=" self-center truncate">{$i18n.t('Archived Chats')}</div>
 			</DropdownMenu.Item>
+      <DropdownMenu.Item
+      class="flex gap-2 items-center py-1.5 px-3 text-sm select-none w-full  hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition cursor-pointer"
+      id="chat-share-button"
+      on:click={async () => {
+        show = false;
+        showShortcuts.set(!$showShortcuts);
+
+        if ($mobile) {
+          await tick();
+          showSidebar.set(false);
+        }
+      }}
+    >
+      <Keyboard className="size-5" />
+      <div class="flex items-center">{$i18n.t('Keyboard shortcuts')}</div>
+    </DropdownMenu.Item>
 
 			{#if role === 'admin'}
 				<DropdownMenu.Item
@@ -141,29 +157,6 @@
 						<UserGroup className="w-5 h-5" strokeWidth="1.5" />
 					</div>
 					<div class=" self-center truncate">{$i18n.t('Admin Panel')}</div>
-				</DropdownMenu.Item>
-			{/if}
-
-		{#if help}
-			<hr class=" border-gray-50 dark:border-gray-800 my-1 p-0" />
-
-			<!-- {$i18n.t('Help')} -->
-
-			<DropdownMenu.Item
-					class="flex gap-2 items-center py-1.5 px-3 text-sm select-none w-full  hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition cursor-pointer"
-					id="chat-share-button"
-					on:click={async () => {
-						show = false;
-						showShortcuts.set(!$showShortcuts);
-
-						if ($mobile) {
-							await tick();
-							showSidebar.set(false);
-						}
-					}}
-				>
-					<Keyboard className="size-5" />
-					<div class="flex items-center">{$i18n.t('Keyboard shortcuts')}</div>
 				</DropdownMenu.Item>
 			{/if}
 
