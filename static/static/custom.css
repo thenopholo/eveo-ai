@@ -130,3 +130,18 @@ html {
 .font-primary {
   font-family: var(--font-hanken) !important;
 }
+
+/* Sidebar logo styling */
+.sidebar-new-chat-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+/* Ensure all favicon icons render correctly */
+img[src*="favicon-icon.svg"],
+img[src*="favicon.svg"] {
+  display: block;
+  object-fit: contain;
+}

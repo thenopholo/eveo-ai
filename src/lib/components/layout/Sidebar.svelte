@@ -557,10 +557,9 @@
 					>
 						<div class=" self-center flex items-center justify-center size-9">
 							<img
-								crossorigin="anonymous"
-								src="{WEBUI_BASE_URL}/static/favicon.png"
-								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
-								alt=""
+								src="/static/favicon-icon.svg"
+								class="sidebar-new-chat-icon size-6 group-hover:hidden"
+								alt="Evelean Logo"
 							/>
 
 							<Sidebar className="size-5 hidden group-hover:flex" />
@@ -735,10 +734,9 @@
 					on:click={newChatHandler}
 				>
 					<img
-						crossorigin="anonymous"
-						src="{WEBUI_BASE_URL}/static/favicon.png"
-						class="sidebar-new-chat-icon size-6 rounded-full"
-						alt=""
+						src="/static/favicon-icon.svg"
+						class="sidebar-new-chat-icon size-6"
+						alt="Evelean Logo"
 					/>
 				</a>
 

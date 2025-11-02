@@ -36,37 +36,6 @@
 
 {#key mounted}
 	<div class="m-auto w-full max-w-6xl px-8 lg:px-20">
-		<div class="flex justify-start">
-			<div class="flex -space-x-4 mb-0.5" in:fade={{ duration: 200 }}>
-				{#each models as model, modelIdx}
-					<button
-						on:click={() => {
-							selectedModelIdx = modelIdx;
-						}}
-					>
-						<Tooltip
-							content={marked.parse(
-								sanitizeResponseContent(
-									models[selectedModelIdx]?.info?.meta?.description ?? ''
-								).replaceAll('\n', '<br>')
-							)}
-							placement="right"
-						>
-							<img
-								crossorigin="anonymous"
-								src={model?.info?.meta?.profile_image_url ??
-									($i18n.language === 'dg-DG'
-										? `${WEBUI_BASE_URL}/doge.png`
-										: `${WEBUI_BASE_URL}/static/favicon.png`)}
-								class=" size-[2.7rem] rounded-full border-[1px] border-gray-100 dark:border-none"
-								alt="logo"
-								draggable="false"
-							/>
-						</Tooltip>
-					</button>
-				{/each}
-			</div>
-		</div>
 
 		{#if $temporaryChatEnabled}
 			<Tooltip
